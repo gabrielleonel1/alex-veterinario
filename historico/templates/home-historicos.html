@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block container %}
+
+
+
+{% include 'partials/messages.html' %}
+{% include 'partials/historico-adicionar.html' %}
+
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th width="30%">Funcionario</th>
+      <th width="20%">Tipo</th>
+      <th width="20%">Descrição</th>
+      <th width="25%">Data</th>
+      <th width="20%"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for p in historico %}
+    <tr>
+      <td>{{p.funcionario}}</td>
+      <td>{{p.tipo}}</td>
+      <td>{{p.descricao}}</td>
+      <td>{{p.data_entrada}}</td>
+    </tr>
+    
+{% endfor %}
+  </tbody>
+</table>
+
+{% endblock container %}

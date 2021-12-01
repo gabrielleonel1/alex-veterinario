@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block container %}
+
+
+
+{% include 'partials/messages.html' %}
+{% include 'partials/animal-adicionar.html' %}
+
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th width="30%">Nome</th>
+      <th width="20%">Raça</th>
+      <th width="20%">Sexo</th>
+      <th width="25%">Idade</th>
+      <th width="20%"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for p in animais %}
+    <tr>
+      <td>{{p.nome}}</td>
+      <td>{{p.raca}}</td>
+      <td>{{p.sexo}}</td>
+      <td>{{p.idade}}</td>
+      <td>
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Ações
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" method="POST" href="{% url 'deletar_animal' p.id%}">Deletar</a>{% csrf_token %}
+              <a class="dropdown-item" method="GET" href="{% url 'home_editar_animal' p.id%}">Editar</a>
+              <a class="dropdown-item" method="GET" href="{% url 'home_historicos' p.id%}">Historico</a>
+            </div>
+          </div>
+      </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+{% endblock container %}

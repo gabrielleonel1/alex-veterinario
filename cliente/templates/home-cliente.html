@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block container %}
+
+
+
+{% include 'partials/messages.html' %}
+{% include 'partials/cliente-adicionar.html' %}
+
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th width="20%">Nome</th>
+      <th width="20%">CPF</th>
+      <th width="10%">Sexo</th>
+      <th width="20%">Telefone</th>
+      <th width="30%">Email</th>
+      <th width="20%"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for c in clientes %}
+    <tr>
+      <td>{{c.nome}}</td>
+      <td>{{c.cpf}}</td>
+      <td>{{c.sexo}}</td>
+      <td>{{c.telefone}}</td>
+      <td>{{c.email}}</td>
+      <td>
+    
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Ações
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" method="POST" href="{% url 'deletar_cliente' c.id%}">Deletar</a>{% csrf_token %}
+              <a class="dropdown-item" method="GET" href="{% url 'home_editar_cliente' c.id%}" >Editar</a>
+              <a class="dropdown-item" method="GET" href="{% url 'home_animal_cliente' c.id%}">Animal</a>
+            </div>
+          </div>
+      </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+{% endblock container %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+  <div class="card-group">
+  <div id="cardCliente" class="card text-white bg-secondary mb-3">
+    <div class="card-body">
+      <p class="card-text">Cadastrar Cliente</p>
+    </div>
+  </div>
+
+
+</div>
+
+<script>
+  document.getElementById("cardCliente").onclick = function() {
+    window.location.href = "{% url 'home_cliente' %}";
+  };
+</script>
+
+{% endblock container %}}
